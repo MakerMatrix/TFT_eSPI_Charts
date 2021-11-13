@@ -1,0 +1,26 @@
+{
+  "name": "TFT_eSPI_Charts",
+  "version": "0.1.0",
+  "description": "Charting library for ILI9341 SPI displays with the TFT_eSPI library",
+  "keywords": "TFT, Chart, Graph, Plot",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/MakerMatrix/TFT_eSPI_Charts.git"
+  },
+  "authors":
+  [
+    {
+      "name": "MakerMatrix",
+      "email": "agentsmith@makermatrix.com",
+      "url": "http://www.makermatrix.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://www.makermatrix.com",
+  "dependencies": {
+    "Bodmer/TFT_eSPI": "~2.3.70"
+  },
+  "frameworks": "*",
+  "platforms": "*"
+}
