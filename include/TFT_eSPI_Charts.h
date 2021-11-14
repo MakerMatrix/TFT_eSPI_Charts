@@ -4,13 +4,12 @@ Copyright 2021, Jarrod Smith (MakerMatrix)
 Licensed under the Apache License
 https://www.apache.org/licenses/LICENSE-2.0.txt
 
-Inspired by (and bits borrowed from) Kris Kasprzak's Graph() function:
+Inspired by Kris Kasprzak's Graph() function:
 https://github.com/KrisKasprzak/GraphingFunction/blob/master/Graph.ino
 */
 
-// #include <Adafruit_GFX.h>
-#include <TFT_ILI9341.h>
-#include <TFT_Colors.h>
+#include <TFT_eSPI.h> // From Bodmer/TFT_eSPI
+#include <TFT_eSPI_Colors.h>
 
 class ChartXY
 {
@@ -41,10 +40,10 @@ public:
     };
 
     // Instantiates the class, taking a pointer to an ILI9341 TFT object
-    //ChartXY(TFT_ILI9341 &tft);
+    //ChartXY(TFT_eSPI &tft);
 
     // Instantiates the class, taking a pointer to an ILI9341 TFT object
-    void begin(TFT_ILI9341 &tft);
+    void begin(TFT_eSPI &tft);
 
     // Returns diagnostic information about the object
     void tftInfo();
@@ -57,49 +56,49 @@ public:
 
     void setAxisLimitsY(float yMin, float yMax, float yIncr);
 
-    void eraseChartRegion(TFT_ILI9341 &tft);
+    void eraseChartRegion(TFT_eSPI &tft);
 
     // Draws the Title
-    void drawTitleChart(TFT_ILI9341 &tft, String chartTitle);
+    void drawTitleChart(TFT_eSPI &tft, String chartTitle);
 
     // Draws X axis title
-    void drawTitleX(TFT_ILI9341 &tft, String xTitle);
+    void drawTitleX(TFT_eSPI &tft, String xTitle);
 
     // Draws Y axis title
-    void drawTitleY(TFT_ILI9341 &tft, String yTitle);
+    void drawTitleY(TFT_eSPI &tft, String yTitle);
 
     // Draws a legend element:
-    void drawLegend(TFT_ILI9341 &tft, String legend, uint16_t xPx, uint16_t yPx, uint16_t fontSize, uint16_t color);
+    void drawLegend(TFT_eSPI &tft, String legend, uint16_t xPx, uint16_t yPx, uint16_t fontSize, uint16_t color);
 
     // Draws the X axis
-    void drawAxisX(TFT_ILI9341 &tft, int tickLen);
+    void drawAxisX(TFT_eSPI &tft, int tickLen);
 
     // Draws the Y axis
-    void drawAxisY(TFT_ILI9341 &tft, int tickLen);
+    void drawAxisY(TFT_eSPI &tft, int tickLen);
 
     // Draws X=0 line
-    void drawX0(TFT_ILI9341 &tft);
+    void drawX0(TFT_eSPI &tft);
 
     // Draws Y=0 line
-    void drawY0(TFT_ILI9341 &tft);
+    void drawY0(TFT_eSPI &tft);
 
     // Draws the X tick labels
-    void drawLabelsX(TFT_ILI9341 &tft);
+    void drawLabelsX(TFT_eSPI &tft);
 
     // Draws the X tick labels
-    void drawLabelsY(TFT_ILI9341 &tft);
+    void drawLabelsY(TFT_eSPI &tft);
 
     // Draw a point
-    void drawPoint(TFT_ILI9341 &tft, float x, float y, uint16_t ptSize);
+    void drawPoint(TFT_eSPI &tft, float x, float y, uint16_t ptSize);
 
     // Erase a point
-    void erasePoint(TFT_ILI9341 &tft, float x, float y, uint16_t ptSize);
+    void erasePoint(TFT_eSPI &tft, float x, float y, uint16_t ptSize);
 
     // Draw a line
-    void drawLine(TFT_ILI9341 &tft, float x0, float y0, float x1, float y1);
+    void drawLine(TFT_eSPI &tft, float x0, float y0, float x1, float y1);
 
     // Erase a line
-    void eraseLine(TFT_ILI9341 &tft, float x0, float y0, float x1, float y1);
+    void eraseLine(TFT_eSPI &tft, float x0, float y0, float x1, float y1);
 
     // Transform a chart X value to a TFT pixel coordinate
     uint16_t xToPx(float x);

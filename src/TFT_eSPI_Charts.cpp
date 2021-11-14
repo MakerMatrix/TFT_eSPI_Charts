@@ -8,10 +8,10 @@ Inspired by (and bits borrowed from) Kris Kasprzak's Graph() function::
 https://github.com/KrisKasprzak/GraphingFunction/blob/master/Graph.ino
 */
 
-#include <TFT_Charts.h>
+#include <TFT_eSPI_Charts.h>
 
 // Instantiates the class, taking a pointer to the TFT object
-void ChartXY::begin(TFT_ILI9341 &tft)
+void ChartXY::begin(TFT_eSPI &tft)
 {
     tft.setRotation(3); // The ILI9341 has its X direction on the short axis by default
     tftResX = tft.width();
@@ -88,13 +88,13 @@ void ChartXY::setAxisLimitsY(float y0, float y1, float incr)
 }
 
 // Draw a rectangle over the chart region
-void ChartXY::eraseChartRegion(TFT_ILI9341 &tft)
+void ChartXY::eraseChartRegion(TFT_eSPI &tft)
 {
     tft.fillRect(xPxLo, yPxLo, xPxSize + 1, yPxSize + 1, chartBGColor); // Fill in the chart background area
 }
 
 // Draws the chart title in the top margin
-void ChartXY::drawTitleChart(TFT_ILI9341 &tft, String chartTitle)
+void ChartXY::drawTitleChart(TFT_eSPI &tft, String chartTitle)
 {
     tft.fillRect(xPxLo, 0, xPxSize, 16, tftBGColor); // Title area
     tft.setTextSize(2);
@@ -104,7 +104,7 @@ void ChartXY::drawTitleChart(TFT_ILI9341 &tft, String chartTitle)
 }
 
 // Draws X axis title
-void ChartXY::drawTitleX(TFT_ILI9341 &tft, String xTitle)
+void ChartXY::drawTitleX(TFT_eSPI &tft, String xTitle)
 {
     int titleWidth = sizeof(xTitle) * 5; // Width in pixels (textSize=1)
     
@@ -115,7 +115,7 @@ void ChartXY::drawTitleX(TFT_ILI9341 &tft, String xTitle)
 }
 
 // Draws Y axis title
-void ChartXY::drawTitleY(TFT_ILI9341 &tft, String yTitle)
+void ChartXY::drawTitleY(TFT_eSPI &tft, String yTitle)
 {
     int titleWidth = sizeof(yTitle) * 5; // Width in pixels (textSize=1)
 
@@ -128,7 +128,7 @@ void ChartXY::drawTitleY(TFT_ILI9341 &tft, String yTitle)
 }
 
 // Draws an arbitrary String starting at the provided pixel coordinates
-void ChartXY::drawLegend(TFT_ILI9341 &tft, String legend, uint16_t xPx, uint16_t yPx, uint16_t fontSize, uint16_t color)
+void ChartXY::drawLegend(TFT_eSPI &tft, String legend, uint16_t xPx, uint16_t yPx, uint16_t fontSize, uint16_t color)
 {
     tft.setTextSize(fontSize);
     tft.setTextColor(color, chartBGColor);
@@ -137,7 +137,7 @@ void ChartXY::drawLegend(TFT_ILI9341 &tft, String legend, uint16_t xPx, uint16_t
 }
 
 // Draw the X axis and ticks (no labels)
-void ChartXY::drawAxisX(TFT_ILI9341 &tft, int xTickLen)
+void ChartXY::drawAxisX(TFT_eSPI &tft, int xTickLen)
 {
     float f, tick, yPxStart;
 
@@ -165,7 +165,7 @@ void ChartXY::drawAxisX(TFT_ILI9341 &tft, int xTickLen)
 }
 
 // Draw the Y axis and ticks (no labels)
-void ChartXY::drawAxisY(TFT_ILI9341 &tft, int yTickLen)
+void ChartXY::drawAxisY(TFT_eSPI &tft, int yTickLen)
 {
     float f, tick, xPxStart;
 
@@ -193,7 +193,7 @@ void ChartXY::drawAxisY(TFT_ILI9341 &tft, int yTickLen)
 }
 
 // Draws the X=0 line, if it's currently in the chart region
-void ChartXY::drawX0(TFT_ILI9341 &tft)
+void ChartXY::drawX0(TFT_eSPI &tft)
 {
     if (xMax >= 0 && xMin <= 0)
     {
@@ -202,7 +202,7 @@ void ChartXY::drawX0(TFT_ILI9341 &tft)
 }
 
 // Draws the Y=0 line, if it's currently in the chart region
-void ChartXY::drawY0(TFT_ILI9341 &tft)
+void ChartXY::drawY0(TFT_eSPI &tft)
 {
     if (yMax >= 0 && yMin <= 0)
     {
@@ -211,7 +211,7 @@ void ChartXY::drawY0(TFT_ILI9341 &tft)
 }
 
 // Draw the X axis labels (no ticks)
-void ChartXY::drawLabelsX(TFT_ILI9341 &tft)
+void ChartXY::drawLabelsX(TFT_eSPI &tft)
 {
     float f, tick, yPxStart;
     uint16_t cursorNudge;
@@ -236,7 +236,7 @@ void ChartXY::drawLabelsX(TFT_ILI9341 &tft)
 }
 
 // Draw the Y axis labels (no ticks)
-void ChartXY::drawLabelsY(TFT_ILI9341 &tft)
+void ChartXY::drawLabelsY(TFT_eSPI &tft)
 {
     float f, tick, xPxStart;
     uint16_t cursorNudge;
@@ -258,7 +258,7 @@ void ChartXY::drawLabelsY(TFT_ILI9341 &tft)
     }
 }
 
-void ChartXY::drawPoint(TFT_ILI9341 &tft, float x, float y, uint16_t ptSize)
+void ChartXY::drawPoint(TFT_eSPI &tft, float x, float y, uint16_t ptSize)
 {
     float px, py;
 
@@ -267,7 +267,7 @@ void ChartXY::drawPoint(TFT_ILI9341 &tft, float x, float y, uint16_t ptSize)
     tft.fillCircle(px, py, ptSize, pointColor);
 }
 
-void ChartXY::erasePoint(TFT_ILI9341 &tft, float x, float y, uint16_t ptSize)
+void ChartXY::erasePoint(TFT_eSPI &tft, float x, float y, uint16_t ptSize)
 {
     float px, py;
 
@@ -277,7 +277,7 @@ void ChartXY::erasePoint(TFT_ILI9341 &tft, float x, float y, uint16_t ptSize)
 }
 
 // Draw a line
-void ChartXY::drawLine(TFT_ILI9341 &tft, float x0, float y0, float x1, float y1)
+void ChartXY::drawLine(TFT_eSPI &tft, float x0, float y0, float x1, float y1)
 {
     uint16_t px0, py0, px1, py1;
 
@@ -291,7 +291,7 @@ void ChartXY::drawLine(TFT_ILI9341 &tft, float x0, float y0, float x1, float y1)
 }
 
 // Erase a line
-void ChartXY::eraseLine(TFT_ILI9341 &tft, float x0, float y0, float x1, float y1)
+void ChartXY::eraseLine(TFT_eSPI &tft, float x0, float y0, float x1, float y1)
 {
     uint16_t px0, py0, px1, py1;
 
