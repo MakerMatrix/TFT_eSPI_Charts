@@ -1,6 +1,6 @@
 {
   "name": "TFT_eSPI_Charts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Charting library for ILI9341 SPI displays with the TFT_eSPI library",
   "keywords": "TFT, Chart, Graph, Plot",
   "repository":

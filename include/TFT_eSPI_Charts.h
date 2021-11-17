@@ -43,7 +43,7 @@ public:
     //ChartXY(TFT_eSPI &tft);
 
     // Instantiates the class, taking a pointer to an ILI9341 TFT object
-    void begin(TFT_eSPI &tft);
+    void begin(TFT_eSPI &tft, unsigned short orientation);
 
     // Returns diagnostic information about the object
     void tftInfo();

@@ -11,9 +11,9 @@ https://github.com/KrisKasprzak/GraphingFunction/blob/master/Graph.ino
 #include <TFT_eSPI_Charts.h>
 
 // Instantiates the class, taking a pointer to the TFT object
-void ChartXY::begin(TFT_eSPI &tft)
+void ChartXY::begin(TFT_eSPI &tft, unsigned short orientation)
 {
-    tft.setRotation(3); // The ILI9341 has its X direction on the short axis by default
+    tft.setRotation(orientation); // The ILI9341 has its X direction on the short axis by default
     tftResX = tft.width();
     tftResY = tft.height();
     xPxLo = 25;              // X pixel for upper left chart corner
@@ -120,11 +120,11 @@ void ChartXY::drawTitleY(TFT_eSPI &tft, String yTitle)
     int titleWidth = sizeof(yTitle) * 5; // Width in pixels (textSize=1)
 
     tft.setTextSize(1);
-    tft.setRotation(1);
+    // tft.setRotation(1);  // Probably a bad idea to hardwire this here
     tft.setTextColor(yTitleColor, tftBGColor);
     tft.setCursor((yPxSize - titleWidth)/2, 0);
     tft.println(yTitle);
-    tft.setRotation(3);
+    // tft.setRotation(3); // Probably a bad idea to hardwire this here
 }
 
 // Draws an arbitrary String starting at the provided pixel coordinates
